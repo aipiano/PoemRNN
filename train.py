@@ -3,6 +3,7 @@ import inputs
 import model
 import time
 from os.path import join
+import os
 
 flags = tf.app.flags
 flags.DEFINE_string('statistic_file', './data/statistic.txt', 'The path of statistic file.')
@@ -92,4 +93,8 @@ def get_num_characters(statistic_file):
 
 
 if __name__ == '__main__':
+    if not os.path.exists('./logs'):
+        os.mkdir('./logs')
+    if not os.path.exists('./checkpoints'):
+        os.mkdir('./checkpoints')
     tf.app.run(train)
